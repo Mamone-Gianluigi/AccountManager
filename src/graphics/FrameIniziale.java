@@ -417,9 +417,15 @@ public class FrameIniziale extends JFrame{
 	private JFrame creaUtente() {
 		final JFrame creaUtent=new JFrame();
 		
+		
+		
+		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		creaUtent.setLocation(new Point((dimension.width - creaUtent.getSize().width) / 2-165, 
 		(dimension.height - creaUtent.getSize().height) / 2 -125));
+		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		creaUtent.setIconImage(ii8.getImage());
 		
 		creaUtent.setSize(330,250);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -557,6 +563,9 @@ public class FrameIniziale extends JFrame{
 		recuperoInf.setLocation(new Point((dimension.width - recuperoInf.getSize().width) / 2-165, 
 		(dimension.height - recuperoInf.getSize().height) / 2 -105));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		recuperoInf.setIconImage(ii8.getImage());
+		
 		recuperoInf.setSize(330,210);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		recuperoInf.setResizable(false);
@@ -692,6 +701,8 @@ public class FrameIniziale extends JFrame{
 				conf.getSize().width) / 2-240, 
 		(dimension.height - conf.getSize().height) / 2 -65));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		conf.setIconImage(ii8.getImage());
 		conf.setSize(480,130);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		conf.setResizable(false);
