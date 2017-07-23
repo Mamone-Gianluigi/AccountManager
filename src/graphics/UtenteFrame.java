@@ -1742,6 +1742,9 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		inserisciRegistra.setIconImage(ii8.getImage());
+		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
 		
@@ -1902,6 +1905,9 @@ public void actionPerformed(ActionEvent e) {
 			rimuoviAcc.setLayout(new BorderLayout());
 			rimuoviAcc.setUndecorated(true);
 				
+			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+			rimuoviAcc.setIconImage(ii8.getImage());
+			
 			JLabel scegli =new JLabel("Seleziona l'account da eliminare");
 			scegli.setFont(new Font("Georgia", Font.PLAIN, 18));
 			scegli.setHorizontalAlignment(JLabel.CENTER);
@@ -2033,6 +2039,8 @@ public void actionPerformed(ActionEvent e) {
 			modificAcc.setLayout(new BorderLayout());
 			modificAcc.setUndecorated(true);
 				
+			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+			modificAcc.setIconImage(ii8.getImage());
 			JLabel scegli =new JLabel("Seleziona l'account da modificare");
 			scegli.setFont(new Font("Georgia", Font.PLAIN, 18));
 			scegli.setHorizontalAlignment(JLabel.CENTER);
@@ -2158,6 +2166,9 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setResizable(false);
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
+		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		inserisciRegistra.setIconImage(ii8.getImage());
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
@@ -2339,6 +2350,8 @@ public void actionPerformed(ActionEvent e) {
 			modificAcc.setResizable(false);
 			modificAcc.setUndecorated(true);
 				
+			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+			modificAcc.setIconImage(ii8.getImage());
 			JLabel scegli =new JLabel("Modifica "+string);
 			scegli.setFont(new Font("Georgia", Font.PLAIN, 18));
 			scegli.setHorizontalAlignment(JLabel.CENTER);
@@ -2494,7 +2507,9 @@ public void actionPerformed(ActionEvent e) {
 			visualizz.setLocation(new Point((dimension.width - 
 				visualizz.getSize().width) / 2-430, 
 					(dimension.height - visualizz.getSize().height) / 2 -200));
-					
+			
+			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+			visualizz.setIconImage(ii8.getImage());
 			visualizz.setSize(860,400);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			visualizz.setResizable(false);
@@ -2632,6 +2647,8 @@ public void actionPerformed(ActionEvent e) {
 				inserisciRegistra.getSize().width) / 2-325, 
 		(dimension.height - inserisciRegistra.getSize().height) / 2 -135));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		inserisciRegistra.setIconImage(ii8.getImage());
 		inserisciRegistra.setSize(550,270);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		inserisciRegistra.setResizable(false);
@@ -2817,6 +2834,9 @@ public void actionPerformed(ActionEvent e) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		modificAcc.setResizable(false);
 		modificAcc.setUndecorated(true);
+		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		modificAcc.setIconImage(ii8.getImage());
 			
 		JLabel scegli =new JLabel("Modifica "+string);
 		scegli.setFont(new Font("Georgia", Font.PLAIN, 18));
@@ -3050,6 +3070,8 @@ public void actionPerformed(ActionEvent e) {
 				scaricaba.getSize().width) / 2-215, 
 		(dimension.height - scaricaba.getSize().height) / 2 -85));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		scaricaba.setIconImage(ii8.getImage());
 		scaricaba.setSize(430,170);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		scaricaba.setResizable(false);
@@ -3171,6 +3193,8 @@ public void actionPerformed(ActionEvent e) {
 				conf.getSize().width) / 2-240, 
 		(dimension.height - conf.getSize().height) / 2 -65));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		conf.setIconImage(ii8.getImage());
 		conf.setSize(480,130);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		conf.setResizable(false);
@@ -3295,7 +3319,8 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
 		
-	
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		inserisciRegistra.setIconImage(ii8.getImage());
 		
 		
 		
