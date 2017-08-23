@@ -724,23 +724,39 @@ public class UtenteFrame extends JFrame {
 		JPanel infoBasso=new JPanel();
 		infoBasso.setLayout(new BorderLayout());
 		
-		JLabel wdd=new JLabel("Account Inseriti: "+numero_account+"");
-		wdd.setFont(new Font("Georgia", Font.ITALIC, 18));
+	
+		
+		JPanel numeroAcc=new JPanel();
+		JLabel wdd=new JLabel("Account Inseriti: ");
+		wdd.setFont(new Font("Georgia", Font.ITALIC, 13));
 		wdd.setForeground(Color.BLACK);
+		JLabel wdd1=new JLabel(""+numero_account);
+		wdd1.setFont(new Font("Georgia", Font.ITALIC, 13));
+		wdd1.setForeground(Color.RED);
+		numeroAcc.add(wdd);
+		numeroAcc.add(wdd1);
 		
-		JLabel wdd44=new JLabel("Account Manager - Versione 4.2 : ");
-		wdd44.setFont(new Font("Georgia", Font.ITALIC, 18));
+		JPanel aut=new JPanel();
+		JLabel wdd44=new JLabel("Author: ");
+		wdd44.setFont(new Font("Georgia", Font.ITALIC, 13));
 		wdd44.setForeground(Color.BLACK);
+		JLabel wdd11=new JLabel("Mamone Gianluigi");
+		wdd11.setFont(new Font("Georgia", Font.ITALIC, 13));
+		wdd11.setForeground(Color.RED);
+		aut.add(wdd44);
+		aut.add(wdd11);
 		
-		JLabel wdd440=new JLabel("Author: Mamone Gianluigi");
-		wdd440.setFont(new Font("Georgia", Font.ITALIC, 18));
+		JPanel ver=new JPanel();
+		JLabel wdd440=new JLabel("Account Manager - Versione 4.2 ");
+		wdd440.setFont(new Font("Georgia", Font.ITALIC, 13));
 		wdd440.setForeground(Color.BLACK);
+		ver.add(wdd440);
 		
 		
 		
-		infoBasso.add(wdd,BorderLayout.EAST);
-		infoBasso.add(wdd44,BorderLayout.CENTER);
-		infoBasso.add(wdd440,BorderLayout.WEST);
+		infoBasso.add(numeroAcc,BorderLayout.EAST);
+		infoBasso.add(ver,BorderLayout.CENTER);
+		infoBasso.add(aut,BorderLayout.WEST);
 		
 		
 		//wder.add(wdd,BorderLayout.EAST);
