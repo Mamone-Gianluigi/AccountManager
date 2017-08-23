@@ -26,11 +26,13 @@ public class Starter23 {
 		
 		if (file.exists()) {
 			System.out.println("--");
+			
 			in = new FileInputStream(file);
 			inStream = new ObjectInputStream(in);
 
+			
 			sistema = (SistemaAccount)inStream.readObject();
-		
+			
 			System.out.println(sistema.getParola());
 
 			in.close();
@@ -46,7 +48,9 @@ public class Starter23 {
 		
 		*/
 		
+	
 		JFrame inizio=new FrameIniziale(sistema);
+	
 		inizio.setVisible(true);
 		
 		//sistema.stampaStadiCapienza();

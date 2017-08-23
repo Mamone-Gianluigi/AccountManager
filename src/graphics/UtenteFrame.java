@@ -130,7 +130,7 @@ public class UtenteFrame extends JFrame {
 		descrizione1.setForeground(Color.BLACK);
 		
 		String nome=sistema.getUtenteCorrente().getNome();
-		int numero_account=sistema.getRegistrazioni().size();
+	
 
 		
 		JLabel descrizione2=new JLabel(nome);
@@ -715,11 +715,47 @@ public class UtenteFrame extends JFrame {
 		JPanel wd=new JPanel();
 		wd.add(descrizione1);
 		wd.add(descrizione2);
-		w1.add(wd,BorderLayout.NORTH);
+		
+		JPanel wder=new JPanel();
+		wder.setLayout(new BorderLayout());
+		
+		int numero_account=sistema.getRegistrazioni().size();
+		
+		JPanel infoBasso=new JPanel();
+		infoBasso.setLayout(new BorderLayout());
+		
+		JLabel wdd=new JLabel("Account Inseriti: "+numero_account+"");
+		wdd.setFont(new Font("Georgia", Font.ITALIC, 18));
+		wdd.setForeground(Color.BLACK);
+		
+		JLabel wdd44=new JLabel("Account Manager - Versione 4.2 : ");
+		wdd44.setFont(new Font("Georgia", Font.ITALIC, 18));
+		wdd44.setForeground(Color.BLACK);
+		
+		JLabel wdd440=new JLabel("Author: Mamone Gianluigi");
+		wdd440.setFont(new Font("Georgia", Font.ITALIC, 18));
+		wdd440.setForeground(Color.BLACK);
+		
+		
+		
+		infoBasso.add(wdd,BorderLayout.EAST);
+		infoBasso.add(wdd44,BorderLayout.CENTER);
+		infoBasso.add(wdd440,BorderLayout.WEST);
+		
+		
+		//wder.add(wdd,BorderLayout.EAST);
+		JPanel wd1=new JPanel();
+		wd1.setLayout(new BorderLayout());
+		wd1.add(wd,BorderLayout.CENTER);
+		//wd1.add(wdd,BorderLayout.EAST);
+		
+		w1.add(wd1,BorderLayout.NORTH);
 		//w1.add(pannelloRegistrazione,BorderLayout.SOUTH);
 		w1.add(rigaCerca,BorderLayout.CENTER);
+		w1.add(wder,BorderLayout.SOUTH);
 		b.add(descrizione,BorderLayout.NORTH);
 		b.add(w1,BorderLayout.CENTER);
+		
 		pannello.add(b,BorderLayout.NORTH);
 		
 		JPanel a45=new JPanel();
@@ -830,7 +866,11 @@ public class UtenteFrame extends JFrame {
 		pannello.add(a45,BorderLayout.CENTER);
 
 		pannello.add(bottoni5,BorderLayout.SOUTH);
-
+		JPanel wder1=new JPanel();
+		wder1.setLayout(new BorderLayout());
+		wder1.add(pannello, BorderLayout.CENTER);
+		wder1.add(infoBasso,BorderLayout.SOUTH);
+		
 		
 		
 		
@@ -1428,7 +1468,7 @@ public class UtenteFrame extends JFrame {
 		
 		tutto.add(cercaeee,BorderLayout.NORTH);
 		
-		tutto.add(pannello,BorderLayout.CENTER);
+		tutto.add(wder1,BorderLayout.CENTER);
 		add(tutto);
 		buttonVisualizza.addActionListener(new VisualizzaListener());
 		salva.addActionListener(new SalvaListener());
