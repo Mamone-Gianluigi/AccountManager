@@ -28,9 +28,18 @@ public class SistemaAccount implements Serializable {
 		utenti.add(defaultUtente);
 		corrente = null;
 		parola="";
+		aggiornamento=false;
 		registrazioni= new ArrayList<Registrazione>();
 	}
 	
+	public Boolean getAggiornamento() {
+		return aggiornamento;
+	}
+
+	public void setAggiornamento(Boolean aggiornamento) {
+		this.aggiornamento = aggiornamento;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -293,13 +302,14 @@ public class SistemaAccount implements Serializable {
 		return parola;
 	}
 	
-	public boolean controllaAggiornamenti(){
-		boolean boo=false;
+	public void controllaAggiornamenti(){
+		
+		
 		HttpURLConnection.setFollowRedirects(false);
 		HttpURLConnection con = null;
 		try {
 			con = (HttpURLConnection) new
-			URL("http://gianluigimamone.ilbello.com/paginaAggiornamento.php").openConnection();
+			URL("https://mamonegianluigi.000webhostapp.com/paginaAggiornamento.php").openConnection();
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -307,30 +317,35 @@ public class SistemaAccount implements Serializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		try {
 			con.setRequestMethod("HEAD");
 		} catch (ProtocolException e1) {
+			System.out.println("e1456");
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		try {
 			System.out.println(con.getResponseMessage());
 			if(con.getResponseCode() == HttpURLConnection.HTTP_OK)
-				boo=true;
+				aggiornamento=true;
 			else
-				boo=false;
+				aggiornamento=false;
 		} catch (IOException e1) {
+			System.out.println("e1");
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return boo;
+		return ;
 	}
 	
 	public void getPagineWeb(){
 		try {
-			Desktop.getDesktop().browse(new URI("http://gianluigimamone.ilbello.com/paginaAggiornamento.php"));
+			Desktop.getDesktop().browse(new URI("https://mamonegianluigi.000webhostapp.com/paginaAggiornamento.php"));
 		} catch (IOException | URISyntaxException e) {
 			// TODO Auto-generated catch block
+			System.out.println("e1asdfghjkkjhgfds");
 			e.printStackTrace();
 		}
 	}
@@ -341,7 +356,7 @@ public class SistemaAccount implements Serializable {
 	private Utente corrente;
 	private ArrayList<Registrazione> registrazioni;
 	private static final long serialVersionUID = 1L;
-
+	private Boolean aggiornamento;
 	private String parola;
 	
 	

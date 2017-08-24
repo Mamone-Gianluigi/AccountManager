@@ -33,6 +33,7 @@ public class UtenteFrame extends JFrame {
 	private Clipboard clipBoard;
 	private JTextComponent textComponent;
     private TransferHandler handler;
+   
 
 	
 	 public int getI() {
@@ -101,6 +102,7 @@ public class UtenteFrame extends JFrame {
 	 private Timer tt1; 
 	
 	public UtenteFrame (SistemaAccount sistema) {
+		 numero_account=0;
 	
 		this.sistema=sistema;
 		val=false;
@@ -140,7 +142,7 @@ public class UtenteFrame extends JFrame {
 	
 		
 		JLabel de=new JLabel();
-		if(sistema.controllaAggiornamenti())
+		if(sistema.getAggiornamento())
 			logo=new ImageIcon(getClass().getResource("/resource/accountManager1Update.png"));
 		else
 			logo=new ImageIcon(getClass().getResource("/resource/accountManager1.png"));
@@ -719,7 +721,7 @@ public class UtenteFrame extends JFrame {
 		JPanel wder=new JPanel();
 		wder.setLayout(new BorderLayout());
 		
-		int numero_account=sistema.getRegistrazioni().size();
+		numero_account=sistema.getRegistrazioni().size();
 		
 		JPanel infoBasso=new JPanel();
 		infoBasso.setLayout(new BorderLayout());
@@ -1434,7 +1436,7 @@ public class UtenteFrame extends JFrame {
 				
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				try {
-					Desktop.getDesktop().browse(new URI("http://gianluigimamone.ilbello.com/paginaAggiornamento.php"));
+					Desktop.getDesktop().browse(new URI("https://mamonegianluigi.000webhostapp.com/paginaAggiornamento.php"));
 				} catch (IOException | URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					System.out.println("errore");
@@ -1464,7 +1466,7 @@ public class UtenteFrame extends JFrame {
 
 		cercaeee.add(eeee,BorderLayout.EAST);
 
-		if(sistema.controllaAggiornamenti())
+		if(sistema.getAggiornamento())
 			notifica.setVisible(true);
 		else
 			notifica.setVisible(false);
@@ -1736,7 +1738,7 @@ public void actionPerformed(ActionEvent e) {
 				HttpURLConnection con = null;
 				try {
 					con = (HttpURLConnection) new
-					URL("http://gianluigimamone.ilbello.com/paginaAggiornamento.php").openConnection();
+					URL("https://mamonegianluigi.000webhostapp.com/paginaAggiornamento.php").openConnection();
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -2041,6 +2043,8 @@ public void actionPerformed(ActionEvent e) {
 						if (listModel.size() > 0) { 
 							int index = listaAccount.getSelectedIndex();
 							sistema.rimuoviRegistrazione(index);
+							numero_account=sistema.getRegistrazioni().size();
+					
 							listModel.removeElementAt(index);
 							if(listModel.size()==0)
 								buttonConferma.setVisible(false);
@@ -2066,7 +2070,7 @@ public void actionPerformed(ActionEvent e) {
 			class IndietroListener implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					rimuoviAcc.dispose();
-					setVisible(true);		
+					new UtenteFrame(sistema).setVisible(true);	
 				}
 			}
 				
@@ -3414,7 +3418,7 @@ public void actionPerformed(ActionEvent e) {
 		class Aggiorna1Listener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				inserisciRegistra.dispose();
-				new UtenteFrame(sistema).setVisible(true);;
+				new UtenteFrame(sistema).setVisible(true);
 			}
 		}
 		
@@ -3510,5 +3514,6 @@ public void actionPerformed(ActionEvent e) {
 	private JPanel notifica;
 	private boolean val=false;
 	private ImageIcon logo;
+	private int numero_account;
 
 }

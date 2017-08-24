@@ -62,10 +62,12 @@ public class FrameIniziale extends JFrame{
 
 			public void mouseClicked(MouseEvent e) {
 				
+			
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				try {
-					Desktop.getDesktop().browse(new URI("http://gianluigimamone.ilbello.com/paginaAggiornamento.php"));
-				} catch (IOException | URISyntaxException e1) {
+					Desktop.getDesktop().browse(new URI("https://mamonegianluigi.000webhostapp.com/paginaAggiornamento.php"));
+				} 
+				catch (IOException | URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					System.out.println("errore");
 					e1.printStackTrace();
@@ -94,11 +96,11 @@ public class FrameIniziale extends JFrame{
 		cerca.add(dee,BorderLayout.EAST);
 		tutto.add(cerca,BorderLayout.NORTH);
 		
-		if(sistema.controllaAggiornamenti())
+		if(sistema.getAggiornamento())
 			notifica.setVisible(true);
 		else
 			notifica.setVisible(false);
-		
+	
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -114,7 +116,7 @@ public class FrameIniziale extends JFrame{
 		JPanel pannelloBenvenuto=new JPanel();
 		tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));		
 		JLabel de=new JLabel();
-		if(sistema.controllaAggiornamenti())
+		if(sistema.getAggiornamento())
 			de.setIcon(new ImageIcon(urlLogo1));
 		else
 			de.setIcon(new ImageIcon(urlLogo));
@@ -250,10 +252,10 @@ public class FrameIniziale extends JFrame{
 					sistema.loginUtente(tusername.getText(),tpassword.getText());
 					dispose();   
 					utFr=new UtenteFrame(sistema);
-					def=new DefaultFrame(new JLabel("Accesso riuscito"),
-							"Accesso riuscito",340,new ImageIcon(imgURLOK),
-						 	utFr); 
-					def.setVisible(true);
+					//def=new DefaultFrame(new JLabel("Accesso riuscito"),
+						//	"Accesso riuscito",340,new ImageIcon(imgURLOK),
+						// 	utFr); 
+					utFr.setVisible(true);
 					
 				} 
 				catch (DatiNonValidiException e1)

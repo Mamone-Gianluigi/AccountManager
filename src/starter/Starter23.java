@@ -24,6 +24,8 @@ public class Starter23 {
 		FileInputStream in;
 		ObjectInputStream inStream;
 		
+		
+		
 		if (file.exists()) {
 			System.out.println("--");
 			
@@ -37,9 +39,14 @@ public class Starter23 {
 
 			in.close();
 			inStream.close();
+			System.out.println("hellooo");
 		}
-		else
+		else{
+			System.out.println("ciao");
 			sistema = new SistemaAccount("Country Sport");
+			
+			System.out.println("hello");
+		}
 		
 		/*sistema.stampaEventiCalcisticiPerCapienza();
 		System.out.println("");
@@ -48,7 +55,7 @@ public class Starter23 {
 		
 		*/
 		
-	
+		sistema.controllaAggiornamenti();
 		JFrame inizio=new FrameIniziale(sistema);
 	
 		inizio.setVisible(true);
