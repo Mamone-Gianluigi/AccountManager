@@ -1849,6 +1849,48 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
 		
+		JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.CENTER);
+		
+		class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = inserisciRegistra.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				inserisciRegistra.setExtendedState(state);
+			}
+		}
+		
+		dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+
+		
+		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		inserisciRegistra.setIconImage(ii8.getImage());
 		
@@ -1860,7 +1902,12 @@ public void actionPerformed(ActionEvent e) {
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setForeground(Color.BLACK);
 		
-		pannello.add(label,BorderLayout.NORTH); // inseriamo a nord del pannello la label "inserisci i dati richiesti" (spostata al centro)
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); // inseriamo a nord del pannello la label "inserisci i dati richiesti" (spostata al centro)
 		
 		JPanel dati = new JPanel(); // creiamo un panel dati in cui inseriremo le label e i text field riguardanti le informazione della nuova partita da inserire
 		JLabel squadraCasa = new JLabel("Tipologia Account*");
@@ -1988,6 +2035,10 @@ public void actionPerformed(ActionEvent e) {
 		
 		JPanel tutto=new JPanel();
 		tutto.setLayout(new BorderLayout());
+
+		
+		
+		
 		tutto.add(pannello,BorderLayout.CENTER);
 		tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));		
 		inserisciRegistra.add(tutto);
@@ -3064,6 +3115,9 @@ public void actionPerformed(ActionEvent e) {
 				caricaba.getSize().width) / 2-215, 
 		(dimension.height - caricaba.getSize().height) / 2 -85));
 		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		caricaba.setIconImage(ii8.getImage());
+		
 		caricaba.setSize(430,170);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		caricaba.setResizable(false);
@@ -3518,6 +3572,8 @@ public void actionPerformed(ActionEvent e) {
 		tutto.add(pannello,BorderLayout.CENTER);
 		inserisciRegistra.add(tutto);
 	
+		
+		
 		return inserisciRegistra;
 	}
 	
@@ -3527,6 +3583,10 @@ public void actionPerformed(ActionEvent e) {
 		cercaField.setText("");
 		pannelloRegistrazione.setVisible(false);
 	}
+	
+	
+	
+	
 	
 	
 	
