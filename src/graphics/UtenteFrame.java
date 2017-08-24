@@ -101,6 +101,8 @@ public class UtenteFrame extends JFrame {
 	 private Timer tt; 
 	 private Timer tt1; 
 	
+	 
+	 private static Point point = new Point();
 	public UtenteFrame (SistemaAccount sistema) {
 		 numero_account=0;
 	
@@ -113,7 +115,7 @@ public class UtenteFrame extends JFrame {
 		
 		setSize(900,650);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setResizable(false); // Il frame non deve essere ridimensionabile
+	//	setResizable(false); // Il frame non deve essere ridimensionabile
 		  ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 			 
 		     
@@ -121,6 +123,22 @@ public class UtenteFrame extends JFrame {
 		     setIconImage(ii8.getImage());
 			
 		setUndecorated(true);
+		
+		addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                point.x = e.getX();
+                point.y = e.getY();
+            }
+        });
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                Point p = getLocation();
+                System.out.println("ddd");
+                setLocation(p.x + e.getX() - point.x,
+                        p.y + e.getY() - point.y);
+            }
+        });
+		
 		setLayout(new BorderLayout());
 		//menù
 		menu=creaMenuBarIniziale();
@@ -1417,6 +1435,12 @@ public class UtenteFrame extends JFrame {
 		eeee.setContentAreaFilled(false);
 		ImageIcon er=new ImageIcon(getClass().getResource("/resource/x.png"));
 		eeee.setIcon(er);
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
 		JPanel cercaeee=new JPanel();
 		cercaeee.setLayout(new BorderLayout());
 
@@ -1464,7 +1488,14 @@ public class UtenteFrame extends JFrame {
 		//cerca.setBorder(BorderFactory.createLineBorder(Color.black,1));	
 		cercaeee.add(notifica,BorderLayout.CENTER);
 
-		cercaeee.add(eeee,BorderLayout.EAST);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		drf.add(eeee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.CENTER);
+		cercaeee.add(drf,BorderLayout.EAST);
+		
+		
 
 		if(sistema.getAggiornamento())
 			notifica.setVisible(true);
@@ -1481,6 +1512,24 @@ public class UtenteFrame extends JFrame {
 				
 			}
 		}
+		
+		
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				setExtendedState(state);
+			}
+		}
+		
+		
+		
+		
+		dee1.addActionListener(new RiduciListener());
+		
 		
 		eeee.addActionListener(new ExitListener());
 		

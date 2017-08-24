@@ -17,6 +17,7 @@ import exceptions.*;
 
 public class FrameIniziale extends JFrame{
 	
+	private static Point point = new Point();
 	public FrameIniziale(SistemaAccount siste) {
 		
 		this.sistema=siste;
@@ -28,13 +29,29 @@ public class FrameIniziale extends JFrame{
 	     setIconImage(ii8.getImage());
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(new Point((dimension.width - getSize().width) / 2-190, 
-		(dimension.height - getSize().height) / 2 -190));
+		setLocation(new Point((dimension.width - getSize().width) / 2-210, 
+		(dimension.height - getSize().height) / 2 -195));
 		setLayout(new BorderLayout());
-		setSize(380,380);
+		setSize(420,390);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		//setResizable(false);
 		setUndecorated(true);
+		
+		addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                point.x = e.getX();
+                point.y = e.getY();
+            }
+        });
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                Point p = getLocation();
+                System.out.println("ddd");
+                setLocation(p.x + e.getX() - point.x,
+                        p.y + e.getY() - point.y);
+            }
+        });
+		
 		
 		
 		JPanel tutto=new JPanel();
@@ -47,6 +64,13 @@ public class FrameIniziale extends JFrame{
 		dee.setContentAreaFilled(false);
 		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
 		dee.setIcon(ii);
+		
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
 		
 		JLabel eeee11=new JLabel("NUOVA VERSIONE DISPOBIBILE");
 		eeee11.setFont(new Font("Georgia", Font.BOLD, 15));
@@ -93,7 +117,12 @@ public class FrameIniziale extends JFrame{
 		cerca.add(menu,BorderLayout.WEST);
 		//cerca.setBorder(BorderFactory.createLineBorder(Color.black,1));		
 		cerca.add(notifica,BorderLayout.CENTER);
-		cerca.add(dee,BorderLayout.EAST);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.CENTER);
+		cerca.add(drf,BorderLayout.EAST);
 		tutto.add(cerca,BorderLayout.NORTH);
 		
 		if(sistema.getAggiornamento())
@@ -107,11 +136,22 @@ public class FrameIniziale extends JFrame{
 				sistema.SvuotaParola();
 				conferma=conferma();
 				conferma.setVisible(true);
-				
 			}
 		}
 		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				setExtendedState(state);
+			}
+		}
+		
+		
 		dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
 		
 		JPanel pannelloBenvenuto=new JPanel();
 		tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));		
