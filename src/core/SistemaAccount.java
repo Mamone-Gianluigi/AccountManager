@@ -22,6 +22,7 @@ public class SistemaAccount implements Serializable {
 
 	
 	public SistemaAccount(String nome){
+		cambiamento=false;
 		this.nome=nome;
 		utenti = new ArrayList<Utente>();
 		Utente defaultUtente= new Utente("Gianluigi","Mamone","admin","pass");
@@ -59,6 +60,7 @@ public class SistemaAccount implements Serializable {
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+		cambiamento=true;
 	}
 
 	public void creaUtente(String nome, String cognome,String user,String pass) throws DatiNonValidiException {
@@ -71,6 +73,7 @@ public class SistemaAccount implements Serializable {
 				throw new DatiNonValidiException(
 						"Esiste già  un account con lo stesso username");
 		utenti.add(new Utente(nome,cognome,user,pass));
+		cambiamento=true;
 
 	}
 	
@@ -85,6 +88,7 @@ public class SistemaAccount implements Serializable {
 				throw new DatiNonValidiException(
 						"Esiste già  un account con lo stesso username");
 		corrente.setUsername(user);
+		cambiamento=true;
 	}
 	
 	public void setPasswordUtente (String pass) throws DatiNonValidiException {
@@ -92,6 +96,7 @@ public class SistemaAccount implements Serializable {
 		if (pass.equals(""))
 			throw new DatiNonValidiException("Inserisci la nuova Password");
 		corrente.setPassword(pass);
+		cambiamento=true;
 	}
 	
 	public void setNomeUtente (String nome) throws DatiNonValidiException {
@@ -99,6 +104,7 @@ public class SistemaAccount implements Serializable {
 		if (nome.equals(""))
 			throw new DatiNonValidiException("Inserisci il nuovo Nome");
 		corrente.setNome(nome);
+		cambiamento=true;
 	}
 	
 	public void setCognomeUtente (String cogno) throws DatiNonValidiException {
@@ -106,6 +112,7 @@ public class SistemaAccount implements Serializable {
 		if (cogno.equals(""))
 			throw new DatiNonValidiException("Inserisci il nuovo Cognome");
 		corrente.setCognome(cogno);
+		cambiamento=true;
 	}
 	
 	public void loginUtente(String user, String pass) throws DatiNonValidiException {
@@ -118,6 +125,7 @@ public class SistemaAccount implements Serializable {
 				corrente = e;
 				registrazioni=e.getR();
 				System.out.println(registrazioni.size());
+				cambiamento=false;
 				return;
 				
 			}
@@ -129,6 +137,7 @@ public class SistemaAccount implements Serializable {
 			if(u.equals(corrente))
 				u.setR(registrazioni);
 		
+		cambiamento=false;
 		corrente = null;
 		parola="";
 		registrazioni=new ArrayList<>();
@@ -159,11 +168,14 @@ public class SistemaAccount implements Serializable {
 					if(r.getUsername().equals(username))
 						throw new DatiNonValidiException("E' gia stato inserito un account "+nomeAccount+" con questo Username");
 			registrazioni.add(new Registrazione(nomeAccount, username, password, emailAlternativa));
+		
+			cambiamento=true;
 		}
 	}
 	
 	public void rimuoviRegistrazione(int i){
 		registrazioni.remove(i);
+		cambiamento=true;
 	}
 	
 	public ArrayList<Utente> getUtenti() {
@@ -172,6 +184,7 @@ public class SistemaAccount implements Serializable {
 
 	public void setUtenti(ArrayList<Utente> utenti) {
 		this.utenti = utenti;
+		cambiamento=true;
 	}
 
 	public Utente getCorrente() {
@@ -180,6 +193,7 @@ public class SistemaAccount implements Serializable {
 
 	public void setCorrente(Utente corrente) {
 		this.corrente = corrente;
+		cambiamento=false;
 	}
 
 	public ArrayList<Registrazione> getRegistrazioni() {
@@ -223,6 +237,7 @@ public class SistemaAccount implements Serializable {
 		if(nomeAccount.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setNomeAccount(nomeAccount);
+		cambiamento=true;
 		
 	}
 
@@ -230,18 +245,21 @@ public class SistemaAccount implements Serializable {
 		if(username.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setUsername(username);
+		cambiamento=true;
 	}
 	
 	public void setPassword(String password,int i) throws DatiNonValidiException {
 		if(password.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setPassword(password);
+		cambiamento=true;
 	}
 
 	public void setEmailAlternativaAccount(String emailAlternativa,int i) throws DatiNonValidiException {
 		if(emailAlternativa.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setEmailAlternativa(emailAlternativa);
+		cambiamento=true;
 	}
 	
 	public void caricaBackup(Scanner in){
@@ -250,8 +268,17 @@ public class SistemaAccount implements Serializable {
 			Registrazione r=Registrazione.read(in);
 			registrazioni.add(r);		
 		}
+		cambiamento=true;
 	}
 	
+	public boolean isCambiamento() {
+		return cambiamento;
+	}
+
+	public void setCambiamento(boolean cambiamento) {
+		this.cambiamento = cambiamento;
+	}
+
 	public ArrayList<String> suggerisci(String cerca){
 		
 		 ArrayList<Registrazione> registrazioni=getRegistrazioni();
@@ -358,6 +385,7 @@ public class SistemaAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Boolean aggiornamento;
 	private String parola;
+	private boolean cambiamento;
 	
 	
 }

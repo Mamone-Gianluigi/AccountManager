@@ -132,10 +132,36 @@ public class FrameIniziale extends JFrame{
 	
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				sistema.SvuotaParola();
-				conferma=conferma();
-				conferma.setVisible(true);
+				
+				if(sistema.isCambiamento()){
+					dispose();
+					sistema.SvuotaParola();
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+				else{
+					sistema.SvuotaParola();
+					FileOutputStream out;
+					ObjectOutputStream outStream;
+					
+					try {
+//						out = new FileOutputStream(urlFile.getFile());
+						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
+						outStream = new ObjectOutputStream(out);
+						
+						outStream.writeObject(sistema); 
+						out.close();
+						outStream.close();
+						File f=new File ("C:\\AccountManager\\AccountManager.txt");
+						f.delete();
+						File f1=new File ("C:\\AccountManager\\AccountManager.doc");
+						f1.delete();
+					} 
+					catch (IOException e1) {}
+					finally {
+						System.exit(0);
+					}
+				}
 			}
 		}
 		
@@ -413,11 +439,36 @@ public class FrameIniziale extends JFrame{
 		
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				sistema.SvuotaParola();
-				conferma=conferma();
-				conferma.setVisible(true);
 				
+				if(sistema.isCambiamento()){
+					dispose();
+					sistema.SvuotaParola();
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+				else{
+					sistema.SvuotaParola();
+					FileOutputStream out;
+					ObjectOutputStream outStream;
+					
+					try {
+//						out = new FileOutputStream(urlFile.getFile());
+						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
+						outStream = new ObjectOutputStream(out);
+						
+						outStream.writeObject(sistema); 
+						out.close();
+						outStream.close();
+						File f=new File ("C:\\AccountManager\\AccountManager.txt");
+						f.delete();
+						File f1=new File ("C:\\AccountManager\\AccountManager.doc");
+						f1.delete();
+					} 
+					catch (IOException e1) {}
+					finally {
+						System.exit(0);
+					}
+				}
 			}
 		}
 		
