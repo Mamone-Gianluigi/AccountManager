@@ -463,7 +463,7 @@ public class FrameIniziale extends JFrame{
 						f.delete();
 						File f1=new File ("C:\\AccountManager\\AccountManager.doc");
 						f1.delete();
-					} 
+					}   
 					catch (IOException e1) {}
 					finally {
 						System.exit(0);
