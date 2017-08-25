@@ -3929,11 +3929,11 @@ public void actionPerformed(ActionEvent e) {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		conf.setLocation(new Point((dimension.width - 
 				conf.getSize().width) / 2-240, 
-		(dimension.height - conf.getSize().height) / 2 -65));
+		(dimension.height - conf.getSize().height) / 2 -80));
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		conf.setIconImage(ii8.getImage());
-		conf.setSize(480,130);
+		conf.setSize(480,160);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//conf.setResizable(false);
 		conf.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
@@ -3988,12 +3988,66 @@ public void actionPerformed(ActionEvent e) {
 		pa8.add(butt2);
 		
 		
+
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = conf.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				conf.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+
+		JLabel label111 =new JLabel("Salva ed Esci");
+		label111.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label111.setHorizontalAlignment(JLabel.CENTER);
+		label111.setForeground(Color.BLACK);
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label111,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
+		
 		
 		JPanel panne=new JPanel();
 		panne.add(label,BorderLayout.NORTH);
 		panne.add(de,BorderLayout.CENTER);
 		panne.add(pa8,BorderLayout.SOUTH);
-		pannello.add(panne);
+		pannello.add(panne,BorderLayout.CENTER);
 		conf.add(pannello);
 		
 		
