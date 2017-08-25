@@ -1694,6 +1694,29 @@ public class UtenteFrame extends JFrame {
 				dispose();   
 				
 				
+				sistema.SvuotaParola();
+				FileOutputStream out;
+				ObjectOutputStream outStream;
+				
+				
+				try {
+//					out = new FileOutputStream(urlFile.getFile());
+					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
+					
+					outStream = new ObjectOutputStream(out);
+					
+					outStream.writeObject(sistema); 
+					out.close();
+					outStream.close();
+				
+				
+				
+				} 
+				catch (IOException e1) {}
+				
+				
+				
+				
 				
 				def=new DefaultFrame(new JLabel("L'utente è stato eliminato - Creato File sul Desktop con tutti gli account"),
 						"Utente eliminato",650,new ImageIcon(imgURLOK),
