@@ -1871,9 +1871,27 @@ public void actionPerformed(ActionEvent e) {
 		
 		inserisciRegistra.setSize(500,270);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		inserisciRegistra.setResizable(false);
+		//inserisciRegistra.setResizable(false);
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
+		
+
+		
+		inserisciRegistra.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		inserisciRegistra.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = inserisciRegistra.getLocation();
+		         
+		                inserisciRegistra.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		/*JButton dee=new JButton();
 		dee.setBorder(null);
@@ -2085,9 +2103,27 @@ public void actionPerformed(ActionEvent e) {
 				(dimension.height - rimuoviAcc.getSize().height) / 2 -210));
 			rimuoviAcc.setSize(700,420);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			rimuoviAcc.setResizable(false);
+			//rimuoviAcc.setResizable(false);
 			rimuoviAcc.setLayout(new BorderLayout());
 			rimuoviAcc.setUndecorated(true);
+			
+
+			
+			rimuoviAcc.addMouseListener(new MouseAdapter() {
+			            public void mousePressed(MouseEvent e) {
+			                point.x = e.getX();
+			                point.y = e.getY();
+			            }
+			        });
+			rimuoviAcc.addMouseMotionListener(new MouseMotionAdapter() {
+			            public void mouseDragged(MouseEvent e) {
+			                Point p = rimuoviAcc.getLocation();
+			         
+			                rimuoviAcc.setLocation(p.x + e.getX() - point.x,
+			                        p.y + e.getY() - point.y);
+			            }
+			        });
+					
 				
 			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 			rimuoviAcc.setIconImage(ii8.getImage());
@@ -2274,10 +2310,28 @@ public void actionPerformed(ActionEvent e) {
 				(dimension.height - modificAcc.getSize().height) / 2 -210));
 			modificAcc.setSize(700,420);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			modificAcc.setResizable(false);
+			//modificAcc.setResizable(false);
 			modificAcc.setLayout(new BorderLayout());
 			modificAcc.setUndecorated(true);
-				
+			
+
+			
+			modificAcc.addMouseListener(new MouseAdapter() {
+			            public void mousePressed(MouseEvent e) {
+			                point.x = e.getX();
+			                point.y = e.getY();
+			            }
+			        });
+			modificAcc.addMouseMotionListener(new MouseMotionAdapter() {
+			            public void mouseDragged(MouseEvent e) {
+			                Point p = modificAcc.getLocation();
+			         
+			              modificAcc.setLocation(p.x + e.getX() - point.x,
+			                        p.y + e.getY() - point.y);
+			            }
+			        });
+					
+			
 			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 			modificAcc.setIconImage(ii8.getImage());
 			JLabel scegli =new JLabel("Seleziona l'account da modificare");
@@ -2456,9 +2510,27 @@ public void actionPerformed(ActionEvent e) {
 		
 		inserisciRegistra.setSize(650,270);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		inserisciRegistra.setResizable(false);
+		//inserisciRegistra.setResizable(false);
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
+		
+
+		
+		inserisciRegistra.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		inserisciRegistra.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = inserisciRegistra.getLocation();
+		         
+		               inserisciRegistra.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		inserisciRegistra.setIconImage(ii8.getImage());
@@ -2693,9 +2765,27 @@ public void actionPerformed(ActionEvent e) {
 				(dimension.height - modificAcc.getSize().height) / 2 -80));
 			modificAcc.setSize(370,160);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			modificAcc.setResizable(false);
+			//modificAcc.setResizable(false);
 			modificAcc.setUndecorated(true);
-				
+			
+
+			
+			modificAcc.addMouseListener(new MouseAdapter() {
+			            public void mousePressed(MouseEvent e) {
+			                point.x = e.getX();
+			                point.y = e.getY();
+			            }
+			        });
+			modificAcc.addMouseMotionListener(new MouseMotionAdapter() {
+			            public void mouseDragged(MouseEvent e) {
+			                Point p = modificAcc.getLocation();
+			         
+			               modificAcc.setLocation(p.x + e.getX() - point.x,
+			                        p.y + e.getY() - point.y);
+			            }
+			        });
+					
+			
 			ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 			modificAcc.setIconImage(ii8.getImage());
 			JLabel scegli =new JLabel("Modifica "+string);
@@ -2858,9 +2948,27 @@ public void actionPerformed(ActionEvent e) {
 			visualizz.setIconImage(ii8.getImage());
 			visualizz.setSize(860,400);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			visualizz.setResizable(false);
+			//visualizz.setResizable(false);
 			visualizz.setLayout(new BorderLayout());
 			visualizz.setUndecorated(true);
+			
+
+			
+			visualizz.addMouseListener(new MouseAdapter() {
+			            public void mousePressed(MouseEvent e) {
+			                point.x = e.getX();
+			                point.y = e.getY();
+			            }
+			        });
+			visualizz.addMouseMotionListener(new MouseMotionAdapter() {
+			            public void mouseDragged(MouseEvent e) {
+			                Point p = visualizz.getLocation();
+			         
+			                visualizz.setLocation(p.x + e.getX() - point.x,
+			                        p.y + e.getY() - point.y);
+			            }
+			        });
+					
 					
 			JPanel bottoni=new JPanel();
 			JButton indietro =new JButton("Indietro");
@@ -3034,6 +3142,9 @@ public void actionPerformed(ActionEvent e) {
 				}
 			}
 			indietro.addActionListener(new IndietroListener());	
+			
+			
+			
 			return visualizz;
 		}
 	}
@@ -3050,9 +3161,27 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setIconImage(ii8.getImage());
 		inserisciRegistra.setSize(550,270);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		inserisciRegistra.setResizable(false);
+		//inserisciRegistra.setResizable(false);
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
+		
+
+		
+		inserisciRegistra.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		inserisciRegistra.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = inserisciRegistra.getLocation();
+		         
+		                inserisciRegistra.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
@@ -3280,8 +3409,26 @@ public void actionPerformed(ActionEvent e) {
 			(dimension.height - modificAcc.getSize().height) / 2 -80));
 		modificAcc.setSize(370,160);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		modificAcc.setResizable(false);
+		//modificAcc.setResizable(false);
 		modificAcc.setUndecorated(true);
+		
+
+		
+	modificAcc.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		modificAcc.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = modificAcc.getLocation();
+		         
+		               modificAcc.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		modificAcc.setIconImage(ii8.getImage());
@@ -3408,9 +3555,27 @@ public void actionPerformed(ActionEvent e) {
 		
 		caricaba.setSize(430,200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		caricaba.setResizable(false);
+		//caricaba.setResizable(false);
 		caricaba.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		caricaba.setUndecorated(true);
+		
+
+		
+		caricaba.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		caricaba.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = caricaba.getLocation();
+		         
+		                caricaba.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
@@ -3575,9 +3740,27 @@ public void actionPerformed(ActionEvent e) {
 		scaricaba.setIconImage(ii8.getImage());
 		scaricaba.setSize(430,190);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		scaricaba.setResizable(false);
+		//scaricaba.setResizable(false);
 		scaricaba.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		scaricaba.setUndecorated(true);
+		
+
+		
+		scaricaba.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		scaricaba.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = scaricaba.getLocation();
+		         
+		                scaricaba.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
@@ -3752,9 +3935,27 @@ public void actionPerformed(ActionEvent e) {
 		conf.setIconImage(ii8.getImage());
 		conf.setSize(480,130);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		conf.setResizable(false);
+		//conf.setResizable(false);
 		conf.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		conf.setUndecorated(true);
+		
+
+		
+		conf.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		conf.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = conf.getLocation();
+		         
+		                conf.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
@@ -3870,13 +4071,27 @@ public void actionPerformed(ActionEvent e) {
 		
 		inserisciRegistra.setSize(550,180);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		inserisciRegistra.setResizable(false);
+		//inserisciRegistra.setResizable(false);
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		inserisciRegistra.setIconImage(ii8.getImage());
 		
+		inserisciRegistra.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                point.x = e.getX();
+                point.y = e.getY();
+            }
+        });
+		inserisciRegistra.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                Point p = inserisciRegistra.getLocation();
+         
+                inserisciRegistra.setLocation(p.x + e.getX() - point.x,
+                        p.y + e.getY() - point.y);
+            }
+        });
 		
 		
 		/*
