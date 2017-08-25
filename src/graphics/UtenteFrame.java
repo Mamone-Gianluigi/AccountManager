@@ -1875,12 +1875,12 @@ public void actionPerformed(ActionEvent e) {
 		inserisciRegistra.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
 		inserisciRegistra.setUndecorated(true);
 		
-		JButton dee=new JButton();
+		/*JButton dee=new JButton();
 		dee.setBorder(null);
 		dee.setContentAreaFilled(false);
 		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
 		dee.setIcon(ii);
-		
+		*/
 		
 		JButton dee1=new JButton();
 		dee1.setBorder(null);
@@ -1890,17 +1890,17 @@ public void actionPerformed(ActionEvent e) {
 		
 		JPanel drf=new JPanel();
 		drf.setLayout(new BorderLayout());
-		drf.add(dee,BorderLayout.EAST);
-		drf.add(dee1,BorderLayout.CENTER);
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
 		
-		class ExitListener implements ActionListener {
+	/*	class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				inserisciRegistra.dispose();
 				sistema.SvuotaParola();
 				conferma=conferma();
 				conferma.setVisible(true);
 			}
-		}
+		}*/
 		
 		class RiduciListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
@@ -1912,7 +1912,7 @@ public void actionPerformed(ActionEvent e) {
 			}
 		}
 		
-		dee.addActionListener(new ExitListener());
+	//	dee.addActionListener(new ExitListener());
 		dee1.addActionListener(new RiduciListener());
 
 		
@@ -2163,6 +2163,47 @@ public void actionPerformed(ActionEvent e) {
 				buttonConferma.setVisible(true);
 			
 
+			/*JButton dee=new JButton();
+			dee.setBorder(null);
+			dee.setContentAreaFilled(false);
+			ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+			dee.setIcon(ii);
+			*/
+			
+			JButton dee1=new JButton();
+			dee1.setBorder(null);
+			dee1.setContentAreaFilled(false);
+			ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+			dee1.setIcon(ii1);
+			
+			JPanel drf=new JPanel();
+			drf.setLayout(new BorderLayout());
+			//drf.add(dee,BorderLayout.EAST);
+			drf.add(dee1,BorderLayout.EAST);
+			
+		/*	class ExitListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					inserisciRegistra.dispose();
+					sistema.SvuotaParola();
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+			}*/
+			
+			class RiduciListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+			
+					int state = rimuoviAcc.getExtendedState();
+					 
+					state = Frame.ICONIFIED;
+					rimuoviAcc.setExtendedState(state);
+				}
+			}
+			
+		//	dee.addActionListener(new ExitListener());
+			dee1.addActionListener(new RiduciListener());
+			
+			
 			class ConfermaListener implements ActionListener{
 				public void actionPerformed(ActionEvent e){
 					try{
@@ -2185,6 +2226,18 @@ public void actionPerformed(ActionEvent e) {
 					}
 				}
 			}
+			
+			JLabel label =new JLabel("Rimozione Account");
+			label.setFont(new Font("Georgia", Font.PLAIN, 18));
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setForeground(Color.BLACK);
+			
+			JPanel drf1=new JPanel();
+			drf1.setLayout(new BorderLayout());
+			drf1.add(label,BorderLayout.CENTER);
+			drf1.add(drf,BorderLayout.EAST);
+			
+			tutto.add(drf1,BorderLayout.NORTH); //
 			
 			/**
 			 * Il listene per il il pulsante Indietro.
@@ -2294,7 +2347,49 @@ public void actionPerformed(ActionEvent e) {
 			else
 				buttonConferma.setVisible(true);
 			
-
+			/*JButton dee=new JButton();
+			dee.setBorder(null);
+			dee.setContentAreaFilled(false);
+			ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+			dee.setIcon(ii);
+			*/
+			
+			JButton dee1=new JButton();
+			dee1.setBorder(null);
+			dee1.setContentAreaFilled(false);
+			ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+			dee1.setIcon(ii1);
+			
+			JPanel drf=new JPanel();
+			drf.setLayout(new BorderLayout());
+			//drf.add(dee,BorderLayout.EAST);
+			drf.add(dee1,BorderLayout.EAST);
+			
+		/*	class ExitListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					inserisciRegistra.dispose();
+					sistema.SvuotaParola();
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+			}*/
+			
+			class RiduciListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+			
+					int state = modificAcc.getExtendedState();
+					 
+					state = Frame.ICONIFIED;
+					modificAcc.setExtendedState(state);
+				}
+			}
+			
+		//	dee.addActionListener(new ExitListener());
+			dee1.addActionListener(new RiduciListener());
+			
+		
+			
+		//	pannello.add(label,BorderLayout.NORTH);
 			class ConfermaListener implements ActionListener{
 				public void actionPerformed(ActionEvent e){
 					try{
@@ -2331,6 +2426,18 @@ public void actionPerformed(ActionEvent e) {
 			JPanel tutto = new JPanel();
 			tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));		
 			tutto.setLayout(new BorderLayout());
+			
+			JLabel label =new JLabel("Modifica Account");
+			label.setFont(new Font("Georgia", Font.PLAIN, 18));
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setForeground(Color.BLACK);
+			
+			JPanel drf1=new JPanel();
+			drf1.setLayout(new BorderLayout());
+			drf1.add(label,BorderLayout.CENTER);
+			drf1.add(drf,BorderLayout.EAST);
+			
+			tutto.add(drf1,BorderLayout.NORTH); //
 			tutto.add(pannello,BorderLayout.CENTER);
 			modificAcc.add(tutto);
 			buttonConferma.addActionListener(new ConfermaListener());
@@ -2364,7 +2471,8 @@ public void actionPerformed(ActionEvent e) {
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setForeground(Color.BLACK);
 		
-		pannello.add(label,BorderLayout.NORTH); // inseriamo a nord del pannello la label "inserisci i dati richiesti" (spostata al centro)
+		
+	 // inseriamo a nord del pannello la label "inserisci i dati richiesti" (spostata al centro)
 		
 		JPanel dati = new JPanel(); // creiamo un panel dati in cui inseriremo le label e i text field riguardanti le informazione della nuova partita da inserire
 		JLabel squadraCasa = new JLabel("  Nome Account :");
@@ -2471,6 +2579,58 @@ public void actionPerformed(ActionEvent e) {
 		tutto.setLayout(new BorderLayout());
 		tutto.add(pannello,BorderLayout.CENTER);
 		inserisciRegistra.add(tutto);
+		
+		
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = inserisciRegistra.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				inserisciRegistra.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
+		
+		//pannello.add(label,BorderLayout.NORTH);
+		
 		class Button1Listener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				modifica=modifica("Nome Account",ee);
@@ -2807,6 +2967,59 @@ public void actionPerformed(ActionEvent e) {
 				pannelloEventi.add(rigaEvento);
 			}
 			
+			
+			/*JButton dee=new JButton();
+			dee.setBorder(null);
+			dee.setContentAreaFilled(false);
+			ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+			dee.setIcon(ii);
+			*/
+			
+			JButton dee1=new JButton();
+			dee1.setBorder(null);
+			dee1.setContentAreaFilled(false);
+			ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+			dee1.setIcon(ii1);
+			
+			JPanel drf=new JPanel();
+			drf.setLayout(new BorderLayout());
+			//drf.add(dee,BorderLayout.EAST);
+			drf.add(dee1,BorderLayout.EAST);
+			
+		/*	class ExitListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+					inserisciRegistra.dispose();
+					sistema.SvuotaParola();
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+			}*/
+			
+			class RiduciListener implements ActionListener {
+				public void actionPerformed(ActionEvent e) {
+			
+					int state = visualizz.getExtendedState();
+					 
+					state = Frame.ICONIFIED;
+					visualizz.setExtendedState(state);
+				}
+			}
+			
+		//	dee.addActionListener(new ExitListener());
+			dee1.addActionListener(new RiduciListener());
+			
+			JLabel label =new JLabel("Visualizza Account");
+			label.setFont(new Font("Georgia", Font.PLAIN, 18));
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setForeground(Color.BLACK);
+			
+			JPanel drf1=new JPanel();
+			drf1.setLayout(new BorderLayout());
+			drf1.add(label,BorderLayout.CENTER);
+			drf1.add(drf,BorderLayout.EAST);
+			
+			tutto.add(drf1,BorderLayout.NORTH); //
+			
 			/**
 			 * Il listener del pulsante Indietro. 
 			 * Selezionando il pulsante Indietro, la finestra riguardante la visualizzazione degli eventi calcistici per capienza stadi 
@@ -2997,6 +3210,55 @@ public void actionPerformed(ActionEvent e) {
 		}
 	
 		
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = inserisciRegistra.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				inserisciRegistra.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		tutto.add(drf1,BorderLayout.NORTH); //
+		
 		
 		butt1.addActionListener(new Button1Listener());
 		butt2.addActionListener(new Button2Listener());
@@ -3139,12 +3401,12 @@ public void actionPerformed(ActionEvent e) {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		caricaba.setLocation(new Point((dimension.width - 
 				caricaba.getSize().width) / 2-215, 
-		(dimension.height - caricaba.getSize().height) / 2 -85));
+		(dimension.height - caricaba.getSize().height) / 2 -100));
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		caricaba.setIconImage(ii8.getImage());
 		
-		caricaba.setSize(430,170);
+		caricaba.setSize(430,200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		caricaba.setResizable(false);
 		caricaba.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
@@ -3242,7 +3504,57 @@ public void actionPerformed(ActionEvent e) {
 			}
 		}
 	
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
 		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = caricaba.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				caricaba.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+		JLabel label111 =new JLabel("Backup");
+		label111.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label111.setHorizontalAlignment(JLabel.CENTER);
+		label111.setForeground(Color.BLACK);
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label111,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
 		
 		butt1.addActionListener(new Button1Listener());
 	
@@ -3257,11 +3569,11 @@ public void actionPerformed(ActionEvent e) {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		scaricaba.setLocation(new Point((dimension.width - 
 				scaricaba.getSize().width) / 2-215, 
-		(dimension.height - scaricaba.getSize().height) / 2 -85));
+		(dimension.height - scaricaba.getSize().height) / 2 -95));
 		
 		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 		scaricaba.setIconImage(ii8.getImage());
-		scaricaba.setSize(430,170);
+		scaricaba.setSize(430,190);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		scaricaba.setResizable(false);
 		scaricaba.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
@@ -3313,6 +3625,60 @@ public void actionPerformed(ActionEvent e) {
 		TitledBorder a5=new TitledBorder(new EtchedBorder(), "Crea Backup");
 		a5.setTitleFont(new Font("Georgia", Font.ITALIC, 13));
 		a5.setTitleColor(Color.BLACK);
+		
+		
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = scaricaba.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				scaricaba.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+		JLabel label111 =new JLabel("Backup");
+		label111.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label111.setHorizontalAlignment(JLabel.CENTER);
+		label111.setForeground(Color.BLACK);
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label111,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
+		
 		
 		panne.setBorder(a5);
 		pannello.setBorder(BorderFactory.createLineBorder(Color.black,2));	
@@ -3598,6 +3964,58 @@ public void actionPerformed(ActionEvent e) {
 		tutto.add(pannello,BorderLayout.CENTER);
 		inserisciRegistra.add(tutto);
 	
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = inserisciRegistra.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				inserisciRegistra.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+		JLabel label111 =new JLabel("Aggiornamenti");
+		label111.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label111.setHorizontalAlignment(JLabel.CENTER);
+		label111.setForeground(Color.BLACK);
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label111,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		tutto.add(drf1,BorderLayout.NORTH); //
+		
 		
 		
 		return inserisciRegistra;
