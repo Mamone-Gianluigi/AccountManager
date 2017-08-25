@@ -46,7 +46,7 @@ public class FrameIniziale extends JFrame{
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
                 Point p = getLocation();
-                System.out.println("ddd");
+            
                 setLocation(p.x + e.getX() - point.x,
                         p.y + e.getY() - point.y);
             }
@@ -522,9 +522,28 @@ public class FrameIniziale extends JFrame{
 		
 		creaUtent.setSize(330,250);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		creaUtent.setResizable(false);
+		//creaUtent.setResizable(false);
 		creaUtent.setLayout(new BorderLayout());
 		creaUtent.setUndecorated(true);
+		
+				
+		creaUtent.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		creaUtent.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = creaUtent.getLocation();
+		         
+		                creaUtent.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
+		
+		
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout());
@@ -712,9 +731,28 @@ public class FrameIniziale extends JFrame{
 		
 		recuperoInf.setSize(330,210);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		recuperoInf.setResizable(false);
+		//recuperoInf.setResizable(false);
 		recuperoInf.setLayout(new BorderLayout());
 		recuperoInf.setUndecorated(true);
+		
+	
+		
+		
+		recuperoInf.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		recuperoInf.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = recuperoInf.getLocation();
+		         
+		                recuperoInf.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
 		
 		JPanel pannello=new JPanel();
 		pannello.setLayout(new BorderLayout());
