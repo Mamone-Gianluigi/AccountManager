@@ -146,7 +146,7 @@ public class DefaultFrame extends JFrame {
 	//	dee.addActionListener(new ExitListener());
 		dee1.addActionListener(new RiduciListener());
 		
-		JLabel label =new JLabel("Errore");
+		JLabel label =new JLabel(title);
 		label.setFont(new Font("Georgia", Font.PLAIN, 18));
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setForeground(Color.BLACK);

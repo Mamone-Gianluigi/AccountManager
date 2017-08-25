@@ -16,6 +16,7 @@ public class Utente implements Cloneable , Serializable {
 		this.cognome = cognome;
 		this.username = username;
 		this.password = password;
+		cambiamentoU=false;
 		r=new ArrayList<>();
 	}
 
@@ -96,6 +97,17 @@ public class Utente implements Cloneable , Serializable {
 	private String username;
 	private String password;
 	private ArrayList<Registrazione> r;
+	private boolean cambiamentoU;
+	public boolean isCambiamentoU() {
+		return cambiamentoU;
+	}
+
+
+
+	public void setCambiamentoU(boolean cambiamentoU) {
+		this.cambiamentoU = cambiamentoU;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 }

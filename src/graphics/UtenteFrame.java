@@ -4061,6 +4061,7 @@ public void actionPerformed(ActionEvent e) {
 			public void actionPerformed(ActionEvent e) {					
 				sistema.SvuotaParola();
 				FileOutputStream out;
+				System.out.println(sistema.isCambiamento());
 				ObjectOutputStream outStream;
 				sistema.getUtenteCorrente().setR(sistema.getRegistrazioni());
 				try {

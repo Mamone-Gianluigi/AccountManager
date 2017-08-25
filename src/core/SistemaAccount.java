@@ -60,7 +60,7 @@ public class SistemaAccount implements Serializable {
 	
 	public void setNome(String nome) {
 		this.nome = nome;
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 
 	public void creaUtente(String nome, String cognome,String user,String pass) throws DatiNonValidiException {
@@ -76,8 +76,7 @@ public class SistemaAccount implements Serializable {
 		cambiamento=true;
 
 	}
-	
-	
+		
 	public void setUsername(String user) throws DatiNonValidiException {
 		
 		if (user.equals(""))
@@ -88,7 +87,7 @@ public class SistemaAccount implements Serializable {
 				throw new DatiNonValidiException(
 						"Esiste già  un account con lo stesso username");
 		corrente.setUsername(user);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void setPasswordUtente (String pass) throws DatiNonValidiException {
@@ -96,7 +95,7 @@ public class SistemaAccount implements Serializable {
 		if (pass.equals(""))
 			throw new DatiNonValidiException("Inserisci la nuova Password");
 		corrente.setPassword(pass);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void setNomeUtente (String nome) throws DatiNonValidiException {
@@ -104,7 +103,7 @@ public class SistemaAccount implements Serializable {
 		if (nome.equals(""))
 			throw new DatiNonValidiException("Inserisci il nuovo Nome");
 		corrente.setNome(nome);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void setCognomeUtente (String cogno) throws DatiNonValidiException {
@@ -112,7 +111,7 @@ public class SistemaAccount implements Serializable {
 		if (cogno.equals(""))
 			throw new DatiNonValidiException("Inserisci il nuovo Cognome");
 		corrente.setCognome(cogno);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void loginUtente(String user, String pass) throws DatiNonValidiException {
@@ -126,6 +125,7 @@ public class SistemaAccount implements Serializable {
 				registrazioni=e.getR();
 				System.out.println(registrazioni.size());
 				cambiamento=false;
+				System.out.println(cambiamento);
 				return;
 				
 			}
