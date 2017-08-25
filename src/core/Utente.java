@@ -92,21 +92,24 @@ public class Utente implements Cloneable , Serializable {
 		}
 	}
 	
+	public void setCambiamentoU(boolean cambiamentoU) {
+		this.cambiamentoU = cambiamentoU;
+	}
+	
+	public boolean isCambiamentoU() {
+		return cambiamentoU;
+	}
+
 	private String nome;
 	private String cognome;
 	private String username;
 	private String password;
 	private ArrayList<Registrazione> r;
 	private boolean cambiamentoU;
-	public boolean isCambiamentoU() {
-		return cambiamentoU;
-	}
 
 
 
-	public void setCambiamentoU(boolean cambiamentoU) {
-		this.cambiamentoU = cambiamentoU;
-	}
+	
 
 	private static final long serialVersionUID = 1L;
 
