@@ -610,6 +610,57 @@ public class FrameIniziale extends JFrame{
 		
 		tutto.add(pannello,BorderLayout.CENTER);
 		
+		
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = creaUtente.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				creaUtente.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+	
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
+		
+		
 		tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		creaUtent.add(tutto,BorderLayout.CENTER);
 		
@@ -747,6 +798,55 @@ public class FrameIniziale extends JFrame{
 		tutto.setLayout(new BorderLayout());
 		
 		tutto.add(pannello,BorderLayout.CENTER);
+		
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = recuperoInf.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				recuperoInf.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		tutto.add(drf1,BorderLayout.NORTH); //
 		
 		tutto.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		recuperoInf.add(tutto,BorderLayout.CENTER);
