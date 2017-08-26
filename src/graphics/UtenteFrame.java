@@ -103,7 +103,7 @@ public class UtenteFrame extends JFrame {
 	
 	 
 	 private static Point point = new Point();
-	public UtenteFrame (SistemaAccount sistema) {
+	 public UtenteFrame (SistemaAccount sistema) {
 		 numero_account=0;
 	
 		this.sistema=sistema;
@@ -133,7 +133,7 @@ public class UtenteFrame extends JFrame {
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
                 Point p = getLocation();
-                System.out.println("ddd");
+                
                 setLocation(p.x + e.getX() - point.x,
                         p.y + e.getY() - point.y);
             }
@@ -1505,10 +1505,17 @@ public class UtenteFrame extends JFrame {
 		
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Utente : "+sistema.getUtenteCorrente().isCambiamentoU());
 				dispose();
+				if(sistema.getUtenteCorrente().isCambiamentoU()){
+					conferma=conferma();
+					conferma.setVisible(true);
+				}
+				else{
+					System.out.println();
+					System.exit(0);
+				}
 				
-				conferma=conferma();
-				conferma.setVisible(true);
 				
 			}
 		}
@@ -1621,6 +1628,7 @@ public class UtenteFrame extends JFrame {
 					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
 					
 					outStream = new ObjectOutputStream(out);
+					sistema.getUtenteCorrente().setCambiamentoU(false);
 					
 					outStream.writeObject(sistema); 
 					out.close();
@@ -1705,6 +1713,9 @@ public class UtenteFrame extends JFrame {
 					
 					outStream = new ObjectOutputStream(out);
 					
+					sistema.getUtenteCorrente().setCambiamentoU(false);
+				
+					
 					outStream.writeObject(sistema); 
 					out.close();
 					outStream.close();
@@ -1742,28 +1753,17 @@ public class UtenteFrame extends JFrame {
 		}
 		
 		class LogOutListener implements ActionListener {	
-public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 			
 				
-				sistema.SvuotaParola();
-				
-				
-				
-				FileOutputStream out;
-				ObjectOutputStream outStream;
-				sistema.getUtenteCorrente().setR(sistema.getRegistrazioni());
-				
-				try {
-					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
-					outStream = new ObjectOutputStream(out);
-					outStream.writeObject(sistema); // Scriviamo sul file lo stato attuale del sistema
-					File f=new File ("C:\\AccountManager\\AccountManager.txt");
-					f.delete();
-					File f1=new File ("C:\\AccountManager\\AccountManager.doc");
-					f1.delete();
-					// Infine chiudiamo i flussi
-					out.close();
-					outStream.close();
+				if(sistema.getUtenteCorrente().isCambiamentoU()){
+					dispose();
+					sistema.SvuotaParola();
+					confermaL=confermaL();
+					confermaL.setVisible(true);
+				}
+				else{
+					
 					String utente =sistema.getUtenteCorrente().getNome();
 					sistema.logout();
 					dispose();
@@ -1772,8 +1772,10 @@ public void actionPerformed(ActionEvent e) {
 						new ImageIcon(imgURLOK),
 						new FrameIniziale(sistema));
 					def.setVisible(true);
-				} 
-				catch (IOException e1) {}
+				}
+	
+	
+				
 				
 				
 				
@@ -1783,15 +1785,16 @@ public void actionPerformed(ActionEvent e) {
 		modifica.addActionListener(new ModificaListener());
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				if(sistema.isCambiamento()){
-					System.out.println("rrr"+sistema.isCambiamento());
+				if( sistema.getUtenteCorrente().isCambiamentoU() ){
+
+					System.out.println("utente :"+sistema.getUtenteCorrente().isCambiamentoU());
 					dispose();
 					sistema.SvuotaParola();
 					conferma=conferma();
 					conferma.setVisible(true);
 				}
 				else{
-					System.out.println("rrre"+sistema.isCambiamento());
+					
 					sistema.SvuotaParola();
 					FileOutputStream out;
 					ObjectOutputStream outStream;
@@ -1800,7 +1803,8 @@ public void actionPerformed(ActionEvent e) {
 //						out = new FileOutputStream(urlFile.getFile());
 						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
 						outStream = new ObjectOutputStream(out);
-						
+						sistema.getUtenteCorrente().setCambiamentoU(false);
+					
 						outStream.writeObject(sistema); 
 						out.close();
 						outStream.close();
@@ -3946,6 +3950,207 @@ public void actionPerformed(ActionEvent e) {
 	}
 	
 	
+	private JFrame confermaL () {
+		final JFrame conf=new JFrame();	// creiamo il frame del'inserimento partita	
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		conf.setLocation(new Point((dimension.width - 
+				conf.getSize().width) / 2-240, 
+		(dimension.height - conf.getSize().height) / 2 -80));
+		
+		ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
+		conf.setIconImage(ii8.getImage());
+		conf.setSize(480,160);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//conf.setResizable(false);
+		conf.setLayout(new BorderLayout()); // settiamo il frame come layout a bordi
+		conf.setUndecorated(true);
+		
+
+		
+		conf.addMouseListener(new MouseAdapter() {
+		            public void mousePressed(MouseEvent e) {
+		                point.x = e.getX();
+		                point.y = e.getY();
+		            }
+		        });
+		conf.addMouseMotionListener(new MouseMotionAdapter() {
+		            public void mouseDragged(MouseEvent e) {
+		                Point p = conf.getLocation();
+		         
+		                conf.setLocation(p.x + e.getX() - point.x,
+		                        p.y + e.getY() - point.y);
+		            }
+		        });
+				
+		
+		JPanel pannello=new JPanel();
+		pannello.setLayout(new BorderLayout()); // creiamo un panel pannello e lo settiamo come layout a bordi
+		
+		JLabel label =new JLabel("Salvare le modifiche prima effettuare il LogOut ?");
+		label.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setForeground(Color.BLACK);
+		
+		
+		
+		
+		JLabel de=new JLabel();
+		de.setIcon(new ImageIcon(imgURLvuoto));
+		// inseriamo a nord del pannello la label "inserisci i dati richiesti" (spostata al centro)
+	
+	
+		JButton butt1=new JButton("      Si      ");
+		butt1.setFont(new Font("Georgia", Font.PLAIN,20));
+		butt1.setForeground(Color.BLACK);
+		JButton butt3=new JButton("      No      ");
+		butt3.setFont(new Font("Georgia", Font.PLAIN,20));
+		butt3.setForeground(Color.BLACK);
+		JButton butt2=new JButton("Annulla");
+		butt2.setFont(new Font("Georgia", Font.PLAIN, 20));
+		butt2.setForeground(Color.BLACK);
+		JPanel pa8=new JPanel();
+		pa8.add(butt1);
+		pa8.add(butt3);
+		pa8.add(butt2);
+		
+		
+
+		/*JButton dee=new JButton();
+		dee.setBorder(null);
+		dee.setContentAreaFilled(false);
+		ImageIcon ii=new ImageIcon(getClass().getResource("/resource/x.png"));
+		dee.setIcon(ii);
+		*/
+		
+		JButton dee1=new JButton();
+		dee1.setBorder(null);
+		dee1.setContentAreaFilled(false);
+		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
+		dee1.setIcon(ii1);
+		
+		JPanel drf=new JPanel();
+		drf.setLayout(new BorderLayout());
+		//drf.add(dee,BorderLayout.EAST);
+		drf.add(dee1,BorderLayout.EAST);
+		
+	/*	class ExitListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				inserisciRegistra.dispose();
+				sistema.SvuotaParola();
+				conferma=conferma();
+				conferma.setVisible(true);
+			}
+		}*/
+		
+		class RiduciListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+		
+				int state = conf.getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				conf.setExtendedState(state);
+			}
+		}
+		
+	//	dee.addActionListener(new ExitListener());
+		dee1.addActionListener(new RiduciListener());
+		
+
+		JLabel label111 =new JLabel("LogOut");
+		label111.setFont(new Font("Georgia", Font.PLAIN, 18));
+		label111.setHorizontalAlignment(JLabel.CENTER);
+		label111.setForeground(Color.BLACK);
+		
+		JPanel drf1=new JPanel();
+		drf1.setLayout(new BorderLayout());
+		drf1.add(label111,BorderLayout.CENTER);
+		drf1.add(drf,BorderLayout.EAST);
+		
+		pannello.add(drf1,BorderLayout.NORTH); //
+		
+		
+		JPanel panne=new JPanel();
+		panne.add(label,BorderLayout.NORTH);
+		panne.add(de,BorderLayout.CENTER);
+		panne.add(pa8,BorderLayout.SOUTH);
+		pannello.add(panne,BorderLayout.CENTER);
+		conf.add(pannello);
+		
+		
+		TitledBorder a5=new TitledBorder(new EtchedBorder(), "LogOut");
+		a5.setTitleFont(new Font("Georgia", Font.ITALIC, 13));
+		a5.setTitleColor(Color.BLACK);
+		
+		panne.setBorder(a5);
+		pannello.setBorder(BorderFactory.createLineBorder(Color.black,2));	
+		class Button1Listener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {					
+				sistema.SvuotaParola();
+				
+				
+				
+				FileOutputStream out;
+				ObjectOutputStream outStream;
+				sistema.getUtenteCorrente().setR(sistema.getRegistrazioni());
+				
+				try {
+					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
+					outStream = new ObjectOutputStream(out);
+					
+					
+			
+					outStream.writeObject(sistema); // Scriviamo sul file lo stato attuale del sistema
+					File f=new File ("C:\\AccountManager\\AccountManager.txt");
+					f.delete();
+					File f1=new File ("C:\\AccountManager\\AccountManager.doc");
+					f1.delete();
+					// Infine chiudiamo i flussi
+					out.close();
+					outStream.close();
+					String utente =sistema.getUtenteCorrente().getNome();
+					sistema.logout();
+					conf.dispose();
+					def=new DefaultFrame(new JLabel("Arrivederci "+utente+", a presto "),
+						"LogOut",390,
+						new ImageIcon(imgURLOK),
+						new FrameIniziale(sistema));
+					def.setVisible(true);
+				} 
+				catch (IOException e1) {}
+			
+			}
+		}
+		
+		class Button3Listener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {					
+				sistema.SvuotaParola();
+				System.exit(0);
+			
+			}
+		}
+		
+		
+		
+		
+		class AnnullaListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				//sistema.SvuotaParola();
+				conf.dispose();
+				
+				setVisible(true);
+			}
+		}
+	
+		
+		
+		butt1.addActionListener(new Button1Listener());
+		butt3.addActionListener(new Button3Listener());
+		
+		butt2.addActionListener(new AnnullaListener());
+		return conf;
+	}
+	
 	private JFrame conferma () {
 		final JFrame conf=new JFrame();	// creiamo il frame del'inserimento partita	
 		
@@ -4084,7 +4289,7 @@ public void actionPerformed(ActionEvent e) {
 			public void actionPerformed(ActionEvent e) {					
 				sistema.SvuotaParola();
 				FileOutputStream out;
-				System.out.println(sistema.isCambiamento());
+			
 				ObjectOutputStream outStream;
 				sistema.getUtenteCorrente().setR(sistema.getRegistrazioni());
 				try {
@@ -4092,6 +4297,9 @@ public void actionPerformed(ActionEvent e) {
 					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
 					outStream = new ObjectOutputStream(out);
 					
+					sistema.getUtenteCorrente().setCambiamentoU(false);
+			
+				
 					outStream.writeObject(sistema); 
 					out.close();
 					outStream.close();
@@ -4136,7 +4344,6 @@ public void actionPerformed(ActionEvent e) {
 		butt2.addActionListener(new AnnullaListener());
 		return conf;
 	}
-	
 	
 	
 	private JFrame aggiornamenti() {
@@ -4352,6 +4559,7 @@ public void actionPerformed(ActionEvent e) {
 	private JFrame aggiornaFrame;
 	private JFrame caricabackup;
 	private JFrame conferma;
+	private JFrame confermaL;
 	private JTextField cercaField;
 	private ArrayList<MyLabel> suggeri;
 	private JPanel pannelloRegistrazione=new JPanel();

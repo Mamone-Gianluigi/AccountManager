@@ -22,7 +22,6 @@ public class SistemaAccount implements Serializable {
 
 	
 	public SistemaAccount(String nome){
-		cambiamento=false;
 		this.nome=nome;
 		utenti = new ArrayList<Utente>();
 		Utente defaultUtente= new Utente("Gianluigi","Mamone","admin","pass");
@@ -73,7 +72,6 @@ public class SistemaAccount implements Serializable {
 				throw new DatiNonValidiException(
 						"Esiste già  un account con lo stesso username");
 		utenti.add(new Utente(nome,cognome,user,pass));
-		cambiamento=true;
 
 	}
 		
@@ -124,8 +122,8 @@ public class SistemaAccount implements Serializable {
 				corrente = e;
 				registrazioni=e.getR();
 				System.out.println(registrazioni.size());
-				cambiamento=false;
-				System.out.println(cambiamento);
+				corrente.setCambiamentoU(false);
+		
 				return;
 				
 			}
@@ -137,7 +135,7 @@ public class SistemaAccount implements Serializable {
 			if(u.equals(corrente))
 				u.setR(registrazioni);
 		
-		cambiamento=false;
+		corrente.setCambiamentoU(false);
 		corrente = null;
 		parola="";
 		registrazioni=new ArrayList<>();
@@ -169,13 +167,13 @@ public class SistemaAccount implements Serializable {
 						throw new DatiNonValidiException("E' gia stato inserito un account "+nomeAccount+" con questo Username");
 			registrazioni.add(new Registrazione(nomeAccount, username, password, emailAlternativa));
 		
-			cambiamento=true;
+			corrente.setCambiamentoU(true);
 		}
 	}
 	
 	public void rimuoviRegistrazione(int i){
 		registrazioni.remove(i);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public ArrayList<Utente> getUtenti() {
@@ -184,7 +182,8 @@ public class SistemaAccount implements Serializable {
 
 	public void setUtenti(ArrayList<Utente> utenti) {
 		this.utenti = utenti;
-		cambiamento=true;
+
+		corrente.setCambiamentoU(true);
 	}
 
 	public Utente getCorrente() {
@@ -193,7 +192,7 @@ public class SistemaAccount implements Serializable {
 
 	public void setCorrente(Utente corrente) {
 		this.corrente = corrente;
-		cambiamento=false;
+		this.corrente.setCambiamentoU(true);
 	}
 
 	public ArrayList<Registrazione> getRegistrazioni() {
@@ -229,15 +228,12 @@ public class SistemaAccount implements Serializable {
 		else 
 			return regi;
 	}
-	
-
-	
-	
+		
 	public void setNomeAccount(String nomeAccount,int i) throws DatiNonValidiException {
 		if(nomeAccount.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setNomeAccount(nomeAccount);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 		
 	}
 
@@ -245,21 +241,21 @@ public class SistemaAccount implements Serializable {
 		if(username.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setUsername(username);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void setPassword(String password,int i) throws DatiNonValidiException {
 		if(password.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setPassword(password);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 
 	public void setEmailAlternativaAccount(String emailAlternativa,int i) throws DatiNonValidiException {
 		if(emailAlternativa.equals(""))
 			throw new DatiNonValidiException("Campo obbligatorio");
 		registrazioni.get(i).setEmailAlternativa(emailAlternativa);
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
 	public void caricaBackup(Scanner in){
@@ -268,16 +264,9 @@ public class SistemaAccount implements Serializable {
 			Registrazione r=Registrazione.read(in);
 			registrazioni.add(r);		
 		}
-		cambiamento=true;
+		corrente.setCambiamentoU(true);
 	}
 	
-	public boolean isCambiamento() {
-		return cambiamento;
-	}
-
-	public void setCambiamento(boolean cambiamento) {
-		this.cambiamento = cambiamento;
-	}
 
 	public ArrayList<String> suggerisci(String cerca){
 		
@@ -385,7 +374,7 @@ public class SistemaAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Boolean aggiornamento;
 	private String parola;
-	private boolean cambiamento;
+
 	
 	
 }

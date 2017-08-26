@@ -24,8 +24,7 @@ public class FrameIniziale extends JFrame{
 		
 	   ImageIcon ii8=new ImageIcon(getClass().getResource("/resource/icona1.png"));
 	 
-	     
-
+	    	
 	     setIconImage(ii8.getImage());
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -133,35 +132,9 @@ public class FrameIniziale extends JFrame{
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(sistema.isCambiamento()){
-					dispose();
-					sistema.SvuotaParola();
-					conferma=conferma();
-					conferma.setVisible(true);
-				}
-				else{
-					sistema.SvuotaParola();
-					FileOutputStream out;
-					ObjectOutputStream outStream;
-					
-					try {
-//						out = new FileOutputStream(urlFile.getFile());
-						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
-						outStream = new ObjectOutputStream(out);
-						
-						outStream.writeObject(sistema); 
-						out.close();
-						outStream.close();
-						File f=new File ("C:\\AccountManager\\AccountManager.txt");
-						f.delete();
-						File f1=new File ("C:\\AccountManager\\AccountManager.doc");
-						f1.delete();
-					} 
-					catch (IOException e1) {}
-					finally {
-						System.exit(0);
-					}
-				}
+				dispose();
+				sistema.SvuotaParola();
+				System.exit(0);
 			}
 		}
 		
@@ -426,7 +399,7 @@ public class FrameIniziale extends JFrame{
 		file = new JMenu("File");
 		file.setFont(new Font("Georgia", Font.ITALIC, 16));
 		file.setForeground(Color.BLACK);
-		JMenuItem salva = new JMenuItem("Salva");
+		JMenuItem salva = new JMenuItem("Riduci a Icona");
 		salva.setFont(new Font("Georgia", Font.ITALIC, 16));
 		salva.setForeground(Color.BLACK);
 		
@@ -440,65 +413,21 @@ public class FrameIniziale extends JFrame{
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(sistema.isCambiamento()){
-					dispose();
-					sistema.SvuotaParola();
-					conferma=conferma();
-					conferma.setVisible(true);
-				}
-				else{
-					sistema.SvuotaParola();
-					FileOutputStream out;
-					ObjectOutputStream outStream;
-					
-					try {
-//						out = new FileOutputStream(urlFile.getFile());
-						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
-						outStream = new ObjectOutputStream(out);
-						
-						outStream.writeObject(sistema); 
-						out.close();
-						outStream.close();
-						File f=new File ("C:\\AccountManager\\AccountManager.txt");
-						f.delete();
-						File f1=new File ("C:\\AccountManager\\AccountManager.doc");
-						f1.delete();
-					}   
-					catch (IOException e1) {}
-					finally {
-						System.exit(0);
-					}
-				}
+				sistema.SvuotaParola();
+				dispose();
+				System.exit(0);
+				
 			}
 		}
 		
 		class SalvaListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				sistema.SvuotaParola();
-				FileOutputStream out;
-				ObjectOutputStream outStream;
+			
 				
-				try {
-//					out = new FileOutputStream(urlFile.getFile());
-					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
-					outStream = new ObjectOutputStream(out);
-					
-					outStream.writeObject(sistema); 
-					out.close();
-					outStream.close();
-					
-					setVisible(false);
-					def=new DefaultFrame(new JLabel("Salvataggio Effettuato"),
-							"Salvato",390,
-							new ImageIcon(imgURLOK),
-							new FrameIniziale(sistema));
-					def.setVisible(true);
-				
-				
-				} 
-				catch (IOException e1) {}
-				
-				
+				int state = getExtendedState();
+				 
+				state = Frame.ICONIFIED;
+				setExtendedState(state);
 			}
 		}
 		
@@ -691,6 +620,30 @@ public class FrameIniziale extends JFrame{
 					sistema.creaUtente(nomeField.getText(),cognomeField.getText(),
 							usernameField.getText(),passwordField.getText());
 					creaUtent.dispose();
+					
+					
+					sistema.SvuotaParola();
+					FileOutputStream out;
+					ObjectOutputStream outStream;
+					
+					try {
+//						out = new FileOutputStream(urlFile.getFile());
+						out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
+						outStream = new ObjectOutputStream(out);
+						
+						outStream.writeObject(sistema); 
+						out.close();
+						outStream.close();
+						
+						setVisible(false);
+				
+					
+					
+					} 
+					catch (IOException e1) {}
+					
+					
+
 					def=new DefaultFrame(new JLabel("Registrazione riuscita"),
 							"Registrazione riuscita",340,new ImageIcon(imgURLOK),
 							new FrameIniziale(sistema));
@@ -1062,6 +1015,8 @@ public class FrameIniziale extends JFrame{
 				sistema.SvuotaParola();
 				FileOutputStream out;
 				ObjectOutputStream outStream;
+		
+
 				
 				try {
 //					out = new FileOutputStream(urlFile.getFile());
@@ -1078,6 +1033,7 @@ public class FrameIniziale extends JFrame{
 				} 
 				catch (IOException e1) {}
 				finally {
+					
 					System.exit(0);
 				}
 			
