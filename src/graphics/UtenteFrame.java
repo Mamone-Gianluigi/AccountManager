@@ -14,6 +14,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.net.ssl.ExtendedSSLSession;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.DefaultEditorKit;
@@ -1441,6 +1442,15 @@ public class UtenteFrame extends JFrame {
 		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
 		dee1.setIcon(ii1);
 		
+		/*dee1a=new JLabel();
+		dee1a.setBorder(null);
+		
+		ImageIcon ii1a=new ImageIcon(getClass().getResource("/resource/wer.png"));
+		dee1a.setIcon(ii1a);
+		dee1a.setVisible(false);*/
+		
+		
+		
 		JPanel cercaeee=new JPanel();
 		cercaeee.setLayout(new BorderLayout());
 
@@ -1493,6 +1503,7 @@ public class UtenteFrame extends JFrame {
 		drf.setLayout(new BorderLayout());
 		drf.add(eeee,BorderLayout.EAST);
 		drf.add(dee1,BorderLayout.CENTER);
+		drf.add(dee1a,BorderLayout.WEST);
 		cercaeee.add(drf,BorderLayout.EAST);
 		
 		
@@ -1512,7 +1523,7 @@ public class UtenteFrame extends JFrame {
 					conferma.setVisible(true);
 				}
 				else{
-					System.out.println();
+					dee1a.setVisible(false);
 					System.exit(0);
 				}
 				
@@ -1629,7 +1640,7 @@ public class UtenteFrame extends JFrame {
 					
 					outStream = new ObjectOutputStream(out);
 					sistema.getUtenteCorrente().setCambiamentoU(false);
-					
+					dee1a.setVisible(false);
 					outStream.writeObject(sistema); 
 					out.close();
 					outStream.close();
@@ -1713,8 +1724,8 @@ public class UtenteFrame extends JFrame {
 					
 					outStream = new ObjectOutputStream(out);
 					
-					sistema.getUtenteCorrente().setCambiamentoU(false);
-				
+					
+					dee1a.setVisible(false);
 					
 					outStream.writeObject(sistema); 
 					out.close();
@@ -1933,6 +1944,8 @@ public class UtenteFrame extends JFrame {
 		ImageIcon ii1=new ImageIcon(getClass().getResource("/resource/_.png"));
 		dee1.setIcon(ii1);
 		
+		
+	
 		JPanel drf=new JPanel();
 		drf.setLayout(new BorderLayout());
 		//drf.add(dee,BorderLayout.EAST);
@@ -2083,6 +2096,8 @@ public class UtenteFrame extends JFrame {
 							squadraOspiteField.getText(),campionatoField.getText(),
 							legaField.getText());
 					inserisciRegistra.dispose();
+					dee1a.setVisible(true);
+					System.out.println("inseirto - "+dee1a.isVisible());
 					def=new DefaultFrame(new JLabel("L'account è stato inserito correttamente"),
 							"Inserimento Riuscito",390,
 							new ImageIcon(imgURLOK),
@@ -2273,6 +2288,7 @@ public class UtenteFrame extends JFrame {
 						if (listModel.size() > 0) { 
 							int index = listaAccount.getSelectedIndex();
 							sistema.rimuoviRegistrazione(index);
+							dee1a.setVisible(true);
 							numero_account=sistema.getRegistrazioni().size();
 					
 							listModel.removeElementAt(index);
@@ -2862,7 +2878,7 @@ public class UtenteFrame extends JFrame {
 							
 							
 							sistema.setNomeAccount(scegli1.getText(),ee);
-							
+							dee1a.setVisible(true);
 							modificAcc.dispose();
 							
 							modiRegistrazione=modiRegistrazione(ee);
@@ -2883,6 +2899,7 @@ public class UtenteFrame extends JFrame {
 					else if(string.equals("Username")){
 						try {
 							sistema.setUsername(scegli1.getText(),ee);
+							dee1a.setVisible(true);
 							modificAcc.dispose();
 							modiRegistrazione=modiRegistrazione(ee);
 							def=new DefaultFrame(new JLabel("Modifica effettuata"),
@@ -2903,6 +2920,7 @@ public class UtenteFrame extends JFrame {
 					else if(string.equals("Password")){
 						try {
 							sistema.setPassword(scegli1.getText(),ee);
+							dee1a.setVisible(true);
 							modificAcc.dispose();
 							
 							modiRegistrazione=modiRegistrazione(ee);
@@ -2923,6 +2941,7 @@ public class UtenteFrame extends JFrame {
 					else if(string.equals("Email Alternativa")){
 						try {
 							sistema.setEmailAlternativaAccount(scegli1.getText(),ee);
+							dee1a.setVisible(true);
 							modificAcc.dispose();
 							
 							modiRegistrazione=modiRegistrazione(ee);
@@ -3361,6 +3380,7 @@ public class UtenteFrame extends JFrame {
 		class AnnullaListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				inserisciRegistra.dispose();
+				
 				setVisible(true);
 			}
 		}
@@ -3504,6 +3524,8 @@ public class UtenteFrame extends JFrame {
 				if(string.equals("Nome")){
 				
 						sistema.getUtenteCorrente().setNome(scegli1.getText());
+						sistema.getUtenteCorrente().setCambiamentoU(true);
+						dee1a.setVisible(true);
 						modificAcc.dispose();
 						
 						modiUtente=modiUtente();
@@ -3516,6 +3538,8 @@ public class UtenteFrame extends JFrame {
 				else if(string.equals("Cognome")){
 					
 						sistema.getUtenteCorrente().setCognome(scegli1.getText());
+						sistema.getUtenteCorrente().setCambiamentoU(true);
+						dee1a.setVisible(true);
 						modificAcc.dispose();
 						
 						modiUtente=modiUtente();
@@ -3529,6 +3553,8 @@ public class UtenteFrame extends JFrame {
 				else if(string.equals("Username")){
 					
 						sistema.getUtenteCorrente().setUsername(scegli1.getText());
+						sistema.getUtenteCorrente().setCambiamentoU(true);
+						dee1a.setVisible(true);
 						modificAcc.dispose();
 						
 						modiUtente=modiUtente();
@@ -3541,6 +3567,8 @@ public class UtenteFrame extends JFrame {
 				else if(string.equals("Password")){
 				
 						sistema.getUtenteCorrente().setPassword(scegli1.getText());
+						sistema.getUtenteCorrente().setCambiamentoU(true);
+						dee1a.setVisible(true);
 						modificAcc.dispose();
 				
 						modiUtente=modiUtente();
@@ -3669,6 +3697,8 @@ public class UtenteFrame extends JFrame {
 				try {
 					Scanner in=new Scanner(new File(nomefile));
 					sistema.caricaBackup(in);
+					//sistema.getUtenteCorrente().setCambiamentoU(true);
+					dee1a.setVisible(true);
 					caricaba.dispose();
 				
 					def=new DefaultFrame(new JLabel("Il backup è stato ripristinato correttamente"),
@@ -4098,7 +4128,7 @@ public class UtenteFrame extends JFrame {
 					out = new FileOutputStream("C:\\AccountManager\\accountManager.dat");
 					outStream = new ObjectOutputStream(out);
 					
-					
+					dee1a.setVisible(false);
 			
 					outStream.writeObject(sistema); // Scriviamo sul file lo stato attuale del sistema
 					File f=new File ("C:\\AccountManager\\AccountManager.txt");
@@ -4298,7 +4328,7 @@ public class UtenteFrame extends JFrame {
 					outStream = new ObjectOutputStream(out);
 					
 					sistema.getUtenteCorrente().setCambiamentoU(false);
-			
+					dee1a.setVisible(false);
 				
 					outStream.writeObject(sistema); 
 					out.close();
@@ -4529,12 +4559,6 @@ public class UtenteFrame extends JFrame {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	private static final long serialVersionUID = 1L;
 	private SistemaAccount sistema;
 	
@@ -4568,6 +4592,10 @@ public class UtenteFrame extends JFrame {
 	private JPanel notifica;
 	private boolean val=false;
 	private ImageIcon logo;
+	private static JJLabel dee1a=new JJLabel();
+
+	
+	
 	private int numero_account;
 
 }
